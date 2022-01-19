@@ -28,7 +28,7 @@ function Upload(){
             image 
         }
         setLoading(true)
-        let res = await fetch('http://localhost:5500/upload/product', {
+        let res = await fetch("/upload/product", {
             method: 'POST',
             body: JSON.stringify(docs),
             headers: {
