@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "14.17.0"
+  },
   "scripts": {
     "server": "nodemon server.js",
     "client": "cd client && npm start",
