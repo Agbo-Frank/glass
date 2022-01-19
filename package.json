@@ -11,7 +11,7 @@
     "client": "cd client && npm start",
     "install-client": "cd client && npm install",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "heroku-postbuild": "npm run install-client && npm run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "author": "Frank",
