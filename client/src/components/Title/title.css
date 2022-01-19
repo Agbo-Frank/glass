@@ -1,0 +1,19 @@
+.title{
+    width: 100%;
+    background-color: var(--pink);
+    text-align: center;
+    color: white;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+.title h2, .title + h2{
+    text-align: center;
+    text-transform: uppercase;
+}
+.title a{
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+    text-transform: capitalize;
+}

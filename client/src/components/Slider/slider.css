@@ -1,0 +1,103 @@
+.sliders{
+    position: relative;
+    width: 100vw;
+    height: 60vh;
+    margin-top: 57px;
+}
+.navs{
+    position: absolute;
+    bottom: 45px;
+    right: 45px;
+    list-style: none;
+    display: flex;
+    gap: 6px;
+}
+.navs li{
+    padding: 7px 10px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+.navs li:hover{
+    background-color: black;
+    color: white;
+}
+.slider{
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 100%;
+    height: 100%;
+    display: none;
+    /* visibility: hidden; */
+    align-items: center;
+    transition: display .1s linear, left .3s linear;
+}
+.slider.active{
+    display: flex !important;
+    left: 0;
+}
+.slider > img{
+    position: absolute;
+    top: 0; left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slider div{
+    line-height: 2;
+    margin-left: 5rem;
+    z-index: 10;
+    color: var(--black);
+}
+.slider div p {
+    transition: unset;
+    animation: fadeIn .25s linear .2s backwards;
+}
+.slider div h1{
+    font-weight: bolder;
+    font-size: 5vw;line-height: 1;
+    transition: unset;
+    animation: fadeIn .25s linear .4s backwards;
+}
+.fadeIn{
+    animation: fadeIn .25s linear .6s backwards;
+}
+.btn{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    transition: unset;
+    color: var(--black);
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    background-color: transparent;
+    width: fit-content;
+    padding: 0.3rem 2rem;
+}
+.btn:hover{
+    background-color: black;
+    color: white;
+}
+@keyframes fadeIn {
+    0%{
+        transform: translateY(3rem);
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 750px){
+    .sliders{
+        height: 60vh;
+    }
+    .slider div{
+        line-height: 2;
+        margin-left: 1rem;
+        z-index: 10;
+    }
+    .slider div h1{
+        font-weight: bolder;
+        font-size: 7vw;
+    }
+}

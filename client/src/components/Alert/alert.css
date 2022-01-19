@@ -1,0 +1,30 @@
+
+.alert i{
+    font-size: 15px;
+}.cusAlert{
+    padding: 8px 6px;
+    font-size: 11px;
+    gap: 5px;
+    width: 60%;
+    margin: 10px auto;
+}
+.cusAlert2{
+    position: fixed;
+    padding: 8px 6px;
+    font-size: 11px;
+    gap: 5px;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    transition: all 0.3s ease-in-out;
+    overflow-wrap: break-word;
+}
+.cusAlert2.active{
+    bottom: 50px;
+}
+@media screen and (max-width: 760px) {
+    .cusAlert2{
+        width: 50%;
+    }
+}

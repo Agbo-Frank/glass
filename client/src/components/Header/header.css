@@ -1,0 +1,155 @@
+header{
+    position: fixed;
+    top: 0;
+    right: 0;left: 0;
+    background-color: var(--white-100);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 9%;
+    width: 100%;
+    box-shadow: 0 3px 9px rgba(0 , 0, 0, 0.2);
+    z-index: 100;
+    height: 60px !important;
+}
+header > div:first-child > img{
+    display: block;
+    margin: auto 0;
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+}
+header > div:nth-child(2){
+    display: flex;
+    justify-content: flex-end;
+    width: 55%;
+    gap: 20px;
+}
+header > div:nth-child(2) > ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    height: 60px;
+}
+
+header > div:nth-child(2) > ul > li  a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--black);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 10px;
+}
+header > div:nth-child(2) div,
+.logo{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    gap: 15px;
+}
+.dropdown > .dropdownMenu{
+    border: 1px solid black !important;
+    position: absolute;
+    top: 100%;
+    display: none;
+    height: 0;
+    width: 150px;
+    background-color: var(--white-100);
+}
+.dropdown > .dropdownMenu li{
+    display: block;
+    padding: 15px 10px;
+    width: 100% !important;
+}
+.dropdown > .dropdownMenu li a{
+    display: block;
+}
+.dropdown > .dropdownMenu li:hover,
+header > div:last-child > ul > li > a:hover{
+    background-color: rgba(153, 153, 153, 0.1);
+}
+.dropdown:hover > .dropdownMenu,
+.dropdownMenu:hover{
+    display: block;
+    height: fit-content;
+}
+header > div > .icons{
+    display: flex;
+    justify-content:flex-end;
+    gap: 9px;
+    color: black;
+}
+header > div > .icons > i:first-child{
+    display: none
+}
+header > div > .icons > a{
+    color: black;
+    text-decoration: none;
+}
+header > div > .icons > i:hover,
+header > div > .icons > a:hover{
+    color: var(--pink)
+}
+@media screen and (max-width: 750px) {
+    header{
+        padding: 0 3%;
+        width: 100%;
+        height: 50px;
+    }
+    header > div:first-child > img{
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+    }
+    header > div:nth-child(2) > ul{
+        display: none;
+        position: absolute;
+        top: -100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        background-color: white;
+        gap: 0;
+    }
+    header > div:nth-child(2) > ul.active{
+        display: flex;
+        top: 100%;
+    }
+    header > div:nth-child(2) > ul > li >  a{
+        justify-content: flex-start;
+        align-items: center;
+        padding: 11px 10px;
+        border-bottom: 1px solid black;
+        height: 100%;
+    }
+    header > div:nth-child(2) > ul > li:last-child > a{
+        border: none
+    }
+    .dropdown > .dropdownMenu{
+        position: relative;
+        height: 0;
+        width: 100%;
+    }
+    .dropdown:hover > .dropdownMenu{
+        height: fit-content
+    }
+    .dropdown > .dropdownMenu li{
+        display: block;
+        padding: 8px 10px;
+        border-top: 1px solid black;
+        width: 100%;
+    }
+    .dropdown > .dropdownMenu li:first-child{
+        border: none;
+    }
+    header > div > .icons > i:first-child{
+        display: block;
+
+    }
+}

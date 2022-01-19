@@ -1,0 +1,31 @@
+const images = {
+    about: require('./about-img.jpg').default,
+    product1: require('./product-1.jpg').default,
+    product2: require('./product-2.jpg').default,
+    product3: require('./product-3.jpg').default,
+    product4: require('./product-4.jpg').default,
+    product5: require('./product-5.jpg').default,
+    product6: require('./product-6.jpg').default,
+    product7: require('./product-7.jpg').default,
+    product8: require('./product-8.jpg').default,
+    product9: require('./product-9.jpg').default,
+    banner1: require('./banner-1.jpg').default,
+    banner2: require('./banner-2.jpg').default,
+    banner3: require('./banner-3.jpg').default,
+    slide1: require('./home-bg-1.png').default,
+    slide2: require('./home-bg-2.png').default,
+    slide3: require('./home-bg-3.png').default,
+    icon1: require('./icon-2.png').default,
+    icon2: require('./icon-1.png').default,
+    icon3: require('./icon-3.png').default,
+    icon4: require('./icon-4.png').default,
+    blog3: require('./blog-3.jpg').default,
+    blog4: require('./blog-4.jpg').default,
+    blog1: require('./blog-2.jpg').default,
+    blog2: require('./blog-1.jpg').default,
+    blog5: require('./blog-5.jpg').default,
+    blog6: require('./blog-6.jpg').default,
+    icon5: require('./icon-5.png').default
+}
+
+export default images

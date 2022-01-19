@@ -1,0 +1,44 @@
+.blogs{
+    display: grid;
+    grid-template-columns:  repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 10px;
+    margin-top: 1rem;
+}
+.blog{
+    border: 1px solid black;
+    border-radius: 5px;
+    height: fit-content;
+    overflow: hidden;
+}
+.blog img{
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    height: 40%;
+    overflow: hidden;
+}
+.blog:hover img{
+    transform: scale(1.1);
+}
+.blog > div{
+    padding: 13px 10px 0;
+}
+.blog > div > div p{
+    line-height: 2;
+    font-size: 14px;
+}
+.blog > div > div > .btn{
+    margin: 10px 0;
+}
+.blog > div > ul{
+    margin-top: 5px;
+    list-style: none;
+    border-top: 1px solid black;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+}
+.blog i{
+    color: var(--pink);
+}
