@@ -35,7 +35,7 @@
 .product > div:first-child i{
     height: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 20px;
 }
 .product > div:first-child i:hover{
     background-color: #f7f7f7;

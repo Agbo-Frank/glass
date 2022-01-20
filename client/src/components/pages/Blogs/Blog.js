@@ -17,8 +17,8 @@ function Blog({img}){
                     <Link to="/" className="btn">Read More</Link>
                 </div>
                 <ul>
-                    <li><i class="fas fa-clock"></i> 21st May, 2021</li>
-                    <li><i class="fas fa-clock"></i> 21st May, 2021</li>
+                    <li><i class="fa fa-clock"></i> 21st May, 2021</li>
+                    <li><i class="fa fa-clock"></i> 21st May, 2021</li>
                 </ul>
             </div>
         </div>

@@ -11,12 +11,16 @@ header{
     z-index: 100;
     height: 60px !important;
 }
+header > div:first-child{
+    margin: auto 5px;
+    width: 10%;
+    height: 100%;
+}
 header > div:first-child > img{
     display: block;
-    margin: auto 0;
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 header > div:nth-child(2){
     display: flex;
@@ -30,6 +34,7 @@ header > div:nth-child(2) > ul{
     justify-content: space-evenly;
     gap: 20px;
     height: 60px;
+    z-index: 90;
 }
 
 header > div:nth-child(2) > ul > li  a{
@@ -89,7 +94,7 @@ header > div > .icons > i:first-child{
 }
 header > div > .icons  i{
     color: black;
-    font-size: 18px;
+    font-size: 20px;
     text-decoration: none;
 }
 header > div > .icons > i:hover,
@@ -101,11 +106,6 @@ header > div > .icons > a:hover{
         padding: 0 3%;
         width: 100%;
         height: 50px;
-    }
-    header > div:first-child > img{
-        width: 80%;
-        height: 80%;
-        object-fit: contain;
     }
     header > div:nth-child(2) > ul{
         padding: 0 !important;
@@ -119,6 +119,17 @@ header > div > .icons > a:hover{
         height: fit-content;
         background-color: white;
         gap: 0;
+        box-shadow: 1px 5px 6px rgba(0, 0, 0, 0.6);
+        z-index: 80;
+    }
+    .overlayer{
+        display: block;
+        position: fixed;
+        top: 0; left: 0;
+        background-color: rgba(0, 0, 0, 0.25);
+        width: 100%;
+        height: 130vh;
+        z-index: 70;
     }
     header > div:nth-child(2) > ul.active{
         display: flex;
