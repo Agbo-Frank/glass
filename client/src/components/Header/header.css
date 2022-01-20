@@ -123,6 +123,7 @@ header > div > .icons > a:hover{
         z-index: 80;
     }
     .overlayer{
+        backdrop-filter: blur(4px);
         display: block;
         position: fixed;
         top: 0; left: 0;

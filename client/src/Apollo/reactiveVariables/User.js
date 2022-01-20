@@ -1,4 +1,5 @@
 import { makeVar } from '@apollo/client'
+import { AlertFunc } from './Alert'
 
 const UserVar = makeVar([])
 
@@ -25,6 +26,10 @@ function UserFunc(action){
         }
         case 'LOGOUT':{
             localStorage.removeItem('Token')
+
+            setTimeout(() => AlertFunc({type: 'CLOSE_ALERT2'}), 5000)
+            AlertFunc({type: 'SUCCESS_ALERT2', data: "Logout successful"})
+
             return UserVar([{
                 ...UserVar()[0],
                 name:'',

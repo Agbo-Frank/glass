@@ -17,7 +17,9 @@ function SignUp(){
     
     const [signUp, {loading}] = useMutation(CREATE_USER, {
         onCompleted: (data) => {
-            console.log(data.loginUser)
+            if(!data.createUser){
+                return false
+            }
             UserFunc({type: 'LOGIN_USER', data: data.createUser})
             navigate('/')
         },

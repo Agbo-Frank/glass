@@ -43,7 +43,10 @@ function Header(){
                         <li onClick={() => setActive('')}><Link to="upload">Upload</Link></li>
                         {
                             user[0]?.isLoggedIn ?
-                            <li onClick={() => UserFunc({type: 'LOGOUT'})}><a>LogOut</a></li> :
+                            <li onClick={() => {
+                                UserFunc({type: 'LOGOUT'})
+                                setActive('')
+                            }}><a>LogOut</a></li> :
                             <li className="dropdown"><a>Account+</a>
                                 <ul className="dropdownMenu">
                                     <li onClick={() => setActive('')}><Link to="/login">Login</Link></li>
@@ -59,7 +62,7 @@ function Header(){
                     </div>
                 </div>
             </header>
-            {active === 'active' && <div className='overlayer'></div>}
+            {active === 'active' && <div className='overlayer' onClick={() => setActive('')}></div>}
         </>
     )
 }

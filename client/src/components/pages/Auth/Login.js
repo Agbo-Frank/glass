@@ -20,13 +20,17 @@ function Login(){
     const [login, {loading}] = useLazyQuery(LOGIN_USER, {
         fetchPolicy: "network-only",
         onCompleted: (data) => {
+            if(!data.loginUser){
+                return true
+            }
             UserFunc({type: 'LOGIN_USER', data: data.loginUser})
-            navigate('/')
+            return navigate('/')
         },
         onError: async (err) => {
             const message = err.graphQLErrors[0]?.message
             await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT'}), 5000)
-            return AlertFunc({type: 'ERROR_ALERT', data: message})
+            AlertFunc({type: 'ERROR_ALERT', data: message})
+            return true
         }
     })
     const [fPW, {loading: FPW}] = useMutation(FORGETPASSWORD, {
@@ -52,8 +56,8 @@ function Login(){
 
         login({
             variables: {
-                email:email.current.value,
-                password:password.current.value
+                email: email.current.value,
+                password: password.current.value
             }
         })
     }

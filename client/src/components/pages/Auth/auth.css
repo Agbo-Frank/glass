@@ -15,6 +15,7 @@ form h3{
 form .input-field{
     width: 100%;
     display: flex;
+    align-items: baseline;
     border-radius: 5px;
     padding: 13px 8px;
     background-color: #f8f8f8;
