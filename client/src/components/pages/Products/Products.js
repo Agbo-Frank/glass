@@ -59,7 +59,6 @@ function Product({product}){
 
 function Products(){
     const {data, loading} = useQuery(GET_PRODUCTS)
-    console.log(data?.getProducts)
     const products = data?.getProducts
 
     if(loading){

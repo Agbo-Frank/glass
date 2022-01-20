@@ -5,6 +5,7 @@ footer{
     padding: 15px 20px;
 }
 footer ul{
+    padding: 0 !important;
     list-style: none;
 }
 footer h3{

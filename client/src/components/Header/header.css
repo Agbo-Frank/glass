@@ -52,7 +52,8 @@ header > div:nth-child(2) div,
     gap: 15px;
 }
 .dropdown > .dropdownMenu{
-    border: 1px solid black !important;
+    margin: 0 !important;
+    padding: 0 !important;
     position: absolute;
     top: 100%;
     display: none;
@@ -86,8 +87,9 @@ header > div > .icons{
 header > div > .icons > i:first-child{
     display: none
 }
-header > div > .icons > a{
+header > div > .icons  i{
     color: black;
+    font-size: 18px;
     text-decoration: none;
 }
 header > div > .icons > i:hover,
@@ -106,6 +108,7 @@ header > div > .icons > a:hover{
         object-fit: contain;
     }
     header > div:nth-child(2) > ul{
+        padding: 0 !important;
         display: none;
         position: absolute;
         top: -100%;
