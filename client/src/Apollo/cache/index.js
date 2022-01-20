@@ -2,12 +2,15 @@ import { ApolloClient, HttpLink} from "@apollo/client"
 import cache from './cache'
 
 const link = new HttpLink({ 
-    uri: "/graphql",
+    uri: '/graphql',
     useGETForQueries: true
 });
 
 const client = new ApolloClient({
-    link,
+    link: new HttpLink({ 
+        uri: '/graphql',
+        useGETForQueries: true
+    }),
     cache
 })
 

@@ -15,7 +15,6 @@ function auth (req, res, next){
 }
 
 async function authenticate (req, res, next){
-    
     const token = req.headers.authtoken
     if(!token){
         req.isAuth = false

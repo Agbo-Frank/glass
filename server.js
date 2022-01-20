@@ -20,7 +20,7 @@ app.use(express.urlencoded({limit: '50mb', extended: true}))
 
 const db = process.env.MONGODB_URL
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
- .then(() => app.listen(PORT, () => console.log('listening to port 5500')))
+ .then(() => console.log('MongoDB connected'))
  .catch(err => console.log(err))
 
 app.use('/graphql', authenticate, graphqlHTTP({
@@ -34,7 +34,11 @@ app.use('/upload', auth, upload)
  if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.resolve(__dirname, './client/build')))
 
-    app.get('*', (req, res) => {
+    app.get('/*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'bulid', 'index.html'))
     })
  }
+
+ app.listen(PORT, () => {
+    console.log(`listening to port at ${PORT}`)
+})

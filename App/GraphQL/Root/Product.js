@@ -5,6 +5,7 @@ module.exports = {
     getProducts: async () => {
         try{
             let products = await Product.find({})
+            console.log(products)
             return products.map(product => {
                 return product._doc
             })
