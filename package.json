@@ -7,12 +7,13 @@
     "node": "14.17.0"
   },
   "scripts": {
-    "server": "nodemon server.js",
-    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "server": "nodemon server.js",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
   },
   "author": "Frank",
   "license": "MIT",
