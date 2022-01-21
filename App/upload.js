@@ -17,7 +17,6 @@ router.post('/product', async (req, res) => {
             image: newImage.public_id
         })
         product = await product.save()
-        console.log(product)
         res.status(200).json({
             product
         })

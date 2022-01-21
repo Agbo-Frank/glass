@@ -6,7 +6,7 @@ import {Image} from 'cloudinary-react';
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import {  GET_USER } from '../../../Apollo/Operations/queries'
 import { CartVar } from '../../../Apollo/reactiveVariables/Cart'
-import { UserVar } from '../../../Apollo/reactiveVariables/User'
+import Loader from '../../Loader/Loader'
 import { REMOVE_CART_ITEM } from '../../../Apollo/Operations/mutations'
 
 const token = localStorage.getItem('Token')
@@ -60,20 +60,12 @@ function Carts(){
         },
         onCompleted: (data) => {
             console.log(data)
-            return CartVar(
-                ...CartVar(),
-                data.getUser.cart)
-        },
-        onError: async (err) => {
-            if(err){
-                // console.log(err)
-                // navigate('/login')
-                // await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT'}), 5000)
-                // return AlertFunc({type: 'ERROR_ALERT', data: 'Please Login!'})
-            }
+            return CartVar(data.getUser.cart)
         } 
     })
-    
+    if(loading){
+        return (<Loader />)
+    }
     return(
         <>
             <Title title="shopping cart" location="cart" />

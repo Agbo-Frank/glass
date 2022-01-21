@@ -58,7 +58,7 @@ function Header(){
                     <div className="icons">
                         <i className="fa fa-bars" onClick={() => active === ''? setActive('active'): setActive('')}></i>
                         <i className="fa fa-search" onClick={() => ToggleFunc({type: 'OPEN_SEARCH_PAGE'})}></i>
-                        <Link to="/cart"><i className="fa fa-shopping-cart"></i></Link>
+                        <Link to={user[0]?.isLoggedIn ?"/cart": "/login"}><i className="fa fa-shopping-cart"></i></Link>
                     </div>
                 </div>
             </header>

@@ -19,39 +19,20 @@
     gap: 8px;
     width: 10%;
     padding: 1rem 2rem;
-    background-color: #E9F3FD;
-    border-radius: 13px;
+    background-color: white;
+    border-radius: 9px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .loader > div > p:first-child i{
     font-size: 30px;
     font-weight: bolder;
-    /* animation-name: loading;
-    animation-duration: 2s;
-    animation-iteration-count: infinite; */
     margin: 0 auto;
 }
 .loader > div > p:last-child{
     font-size: 17px;
     font-weight: bold;
 }
-
-/* @keyframes loading {
-    0%{
-      color:#D00000;
-      transform: rotate(0deg);
-    }
-  
-    50% {
-      color:  #F48C06;
-      transform: rotate(1800deg);
-    }
-    100% {
-      color:  #D00000;
-      transform: rotate(360deg);
-    }
-  } */
 @media screen and (max-width: 960px) {
   .loader > div{
     width: 20%;
