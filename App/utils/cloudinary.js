@@ -7,4 +7,14 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 })
 
+function uploads(file){
+    return new Promise(resolve => {
+        cloudinary.uploader.upload(file, result => {
+            resolve( result.public_id)},
+            {
+                resource_type: auto
+            })
+    })
+}
+
 module.exports = cloudinary

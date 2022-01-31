@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema({
     },
     rating:[{
         rate: Number,
-        UserId: String
+        userId: String
     }],
     date:{
         type: Date,

@@ -29,6 +29,22 @@ const GET_USER = gql`
         }
     }
 `
+const GET_CART = gql`
+    query GetCart{
+        getUser{
+            cart{
+                itemId
+                quantity
+                product{
+                    name
+                    _id
+                    price
+                    image
+                }
+            }
+        }
+    }
+`
 const SEARCH = gql`
     query Search($word: String!){
         search(word: $word){
@@ -55,5 +71,6 @@ export {
     LOGIN_USER,
     GET_USER,
     GET_PRODUCTS,
-    SEARCH 
+    SEARCH,
+    GET_CART 
 }

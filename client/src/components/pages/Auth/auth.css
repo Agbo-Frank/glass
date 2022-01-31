@@ -1,6 +1,6 @@
 
 form{
-    width: 35%;
+    width: 450px;
     border: 1px solid black;
     border-radius: 5px;
     padding: 20px 15px;
@@ -52,11 +52,20 @@ form .btn{
     width: 100%;
     border-radius: 5px;
     height: 200px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+.upload::-webkit-scrollbar{
+    appearance: none;
+    width: 8px;
+}
+.upload::-webkit-scrollbar-thumb{
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 .upload img{
     width: 70%;
@@ -65,18 +74,39 @@ form .btn{
     overflow: hidden;
     border-radius: 5px;
 }
-.upload i{
+.upload .upload-prompt i{
     font-size: 50px;
 }
-.upload label{
+.upload .upload-prompt label{
     color: var(--pink);
     font-weight: 900;
 }
 .upload input{
     display: none;
 }
-@media screen and (max-width: 750px){
+.upload .upload-product{
+    display: flex;
+    position: relative;
+    width: 100%;
+    gap: 6px;
+    flex-direction: column;
+}
+.upload .upload-product img{
+    width: 100%;
+    object-fit: cover;
+}
+.upload .upload-product label{
+    background-color: white;
+    padding: 7px 12px;
+    border-radius: 6px;
+    position: absolute;
+    width: fit-content;
+    margin-left: auto;
+    right: 7px;
+    top: 7px;
+}
+@media screen and (max-width: 450px){
     form{
-        width: 80%;
+        width: 100%;
     }
 }

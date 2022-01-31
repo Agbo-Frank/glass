@@ -34,12 +34,13 @@ function Product({product}){
     return(
         <div className="product">
             <div>
-                <i class="fa fa-cart-arrow-down" onClick={() => addToCart({
+                <i className="fa fa-cart-arrow-down" onClick={() => addToCart({
                     variables:{
                         id: product._id
                     }
                 })}></i>
-                <i class="fa fa-heart"></i>
+                <i className="fa fa-eye"></i>
+                <i className="fa fa-heart"></i>
             </div>
             <Image cloudName="agbofrank" publicId={product.image} secure="true" ></Image>
             <div>
@@ -59,6 +60,7 @@ function Product({product}){
 
 function Products(){
     const {data, loading} = useQuery(GET_PRODUCTS)
+    console.log(data)
     const products = data?.getProducts
 
     if(loading){

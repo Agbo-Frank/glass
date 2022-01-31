@@ -6,7 +6,7 @@ const UserVar = makeVar([])
 function UserFunc(action){
     switch (action.type){
         case 'LOGIN_USER':{
-            localStorage.setItem('Token', action.data?.token)
+            localStorage.setItem('Token', action?.data.token)
             return UserVar([{
                 ...UserVar()[0],
                 name:action.data?.user.name,

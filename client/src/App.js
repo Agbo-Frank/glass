@@ -4,6 +4,7 @@ import Header from "./components/Header/Header"
 import Footer from './components/Footer/Footer'
 import About from './components/pages/About/About'
 import Products from './components/pages/Products/Products'
+import Product from './components/pages/Product/Product'
 import './index.css'
 import Blogs from './components/pages/Blogs/Blog.js'
 import Login from './components/pages/Auth/Login.js'
@@ -12,6 +13,9 @@ import Carts from './components/pages/Cart/Cart.js'
 import Upload from './components/pages/Upload/upload'
 import { Alert2 } from './components/Alert/Alert'
 import Search from './components/Search/Search.js'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import "swiper/css/bundle";
 
 
 function App() {
@@ -21,7 +25,8 @@ function App() {
       <Search />
       <Routes>
         <Route exact path="/" element={<Home />}/>
-        <Route exact path="/product" element={<Products />}/>
+        <Route exact path="/products" element={<Products />}/>
+        <Route exact path="/product" element={<Product />}/>
         <Route exact path="/about" element={<About />}/>
         <Route exact path="/blogs" element={<Blogs />}/>
         <Route exact path="/login" element={<Login />}/>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { AlertFunc } from '../../../Apollo/reactiveVariables/Alert'
 import {Image} from 'cloudinary-react';
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
-import {  GET_USER } from '../../../Apollo/Operations/queries'
+import {  GET_USER, GET_CART } from '../../../Apollo/Operations/queries'
 import { CartVar } from '../../../Apollo/reactiveVariables/Cart'
 import Loader from '../../Loader/Loader'
 import { REMOVE_CART_ITEM } from '../../../Apollo/Operations/mutations'
@@ -33,7 +33,7 @@ function Cart({cart}){
                 }
             })}></i>
             <div>
-            <Image cloudName="agbofrank" publicId={cart?.product.image} secure="true" ></Image>
+            <Image cloudName="agbofrank" publicId={cart?.product?.image} secure="true" ></Image>
                 <div>
                     <strong>{cart?.product.name}</strong>
                     <div className="quantity-control">
@@ -51,7 +51,7 @@ function Carts(){
     const carts = useReactiveVar(CartVar)
     const navigate = useNavigate()
     
-    const {loading, error } = useQuery(GET_USER, {
+    const {loading, error } = useQuery(GET_CART, {
         fetchPolicy: "network-only",
         context:{
             headers:{
@@ -60,7 +60,7 @@ function Carts(){
         },
         onCompleted: (data) => {
             console.log(data)
-            return CartVar(data.getUser.cart)
+            return CartVar([...data.getUser.cart])
         } 
     })
     if(loading){

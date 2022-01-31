@@ -7,53 +7,60 @@ import Title from '../../Title/Title'
 function Upload(){
     const name = useRef('')
     const price = useRef('')
-    const [image, setImage] = useState('')
+    let file;
+    const [images, setImage] = useState([])
     const [loading,setLoading] = useState(false)
     const token = localStorage.getItem('Token');
 
     function upload(e){
-        let reader = new FileReader()
-        reader.readAsDataURL(e.target.files[0])
-        reader.onload = () => {
-            setImage(reader.result)
+        for(let i = 0; i < e.target.files.length; i++){
+            let reader = new FileReader()
+            reader.readAsDataURL(e.target.files[i])
+            reader.onload = () => {
+                setImage(state => ([...state, reader.result]))
+            }
         }
     }
 
     async function submit(e){
         e.preventDefault()
 
-        let docs = {
-            name: name.current.value,
-            price: price.current.value,
-            image 
+        let formData = new FormData();
+        formData.append('name', name.current.value);
+        formData.append('price', price.current.value);
+        for(let i = 0; i < images.length; i++){
+            formData.append("images", images[i]);
         }
-        setLoading(true)
-        let res = await fetch("/upload/product", {
+
+        // List key/value pairs
+        for(let [name, value] of formData) {
+            console.log(`${name} = ${value}`);
+        }
+        // setLoading(true)
+        let res = await fetch("http://localhost:5500/upload/product", {
             method: 'POST',
-            body: JSON.stringify(docs),
+            body: formData,
             headers: {
-                'Content-Type': 'application/json',
                 'x-auth-token': token
             }
         })
-        let data = await res.json()
-        if(data){
-            //set the loading to false
-            setLoading(false)
+        // let data = await res.json()
+        // if(data){
+        //     //set the loading to false
+        //     setLoading(false)
 
-            //empty the input value
-            name.current.value = ''
-            price.current.value = ''
-            setImage('')
+        //     //empty the input value
+        //     name.current.value = ''
+        //     price.current.value = ''
+        //     setImage('')
             
-            //set the alert
-            await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT'}), 5000)
-            data.product ?
-            AlertFunc({type: 'SUCCESS_ALERT', data: 'successfully Uploaded'}) :
-            AlertFunc({type: 'ERROR_ALERT', data: 'Upload unsuccessful try uploaing again'})
-            console.log(data)
-        }
-        
+        //     //set the alert
+        //     await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT'}), 5000)
+        //     data.product ?
+        //     AlertFunc({type: 'SUCCESS_ALERT', data: 'successfully Uploaded'}) :
+        //     AlertFunc({type: 'ERROR_ALERT', data: 'Upload unsuccessful try uploaing again'})
+        //     console.log(data)
+        // }
     }
     return(
         <>
@@ -65,20 +72,38 @@ function Upload(){
                     {/* <i class="fas fa-user"></i> */}
                     <input 
                     type="text"
+                    name='name'
                     placeholder="Enter the name of your glasses"
                     ref={name}/>
                 </div>
                 <div className="input-field">
                     {/* <i class="fas fa-lock"></i> */}
                     <input  
-                    type="Number" 
+                    type="Number"
+                    name='price' 
                     placeholder="enter the price of the glasses"
                     ref={price}/>
                 </div>
                 <div className="input-field upload">
                     {
-                        image ? 
-                        <img src={image} />:
+                        images.length !== 0 ? 
+                        <div className="upload-product">
+                            <label htmlFor="myfile">
+                                <i className="fa fa-image"></i>Add image of product
+                                <input 
+                                    type="file"   
+                                    id="myfile" 
+                                    name='file'
+                                    // ref={image}
+                                    multiple
+                                    onChange={(e) => upload(e)}/>
+                            </label>
+                            {
+                                images.map((image, i) => (
+                                    <img src={image} key={i}/>
+                                ))
+                            }
+                        </div>:
                         <div className="upload-prompt">
                             <i className="fa fa-image"></i>
                             <p>
@@ -86,9 +111,11 @@ function Upload(){
                                 <label htmlFor="myfile">
                                     browse
                                     <input 
-                                    type="file" 
-                                    name='image'  
-                                    id="myfile" 
+                                    type="file"   
+                                    id="myfile"
+                                    name='file'
+                                    ref={i => file = i}
+                                    multiple 
                                     onChange={(e) => upload(e)}/>
                                 </label>
                             </p>

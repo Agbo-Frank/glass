@@ -15,24 +15,18 @@ const  CREATE_USER = gql`
 
 const ADD_TO_CART = gql`
     mutation AddToCart($id: String!){
-        addToCart(itemId: $id){
-            message
-        }
+        addToCart(id: $id)
     }
 `
 const REMOVE_CART_ITEM = gql`
     mutation RemoveFromCart($id: String!){
-        removeFromCart(itemId: $id){
-            message
-        }
+        removeFromCart(id: $id)
     }
 `
 
 const FORGETPASSWORD = gql`
     mutation ForgetPassword($email: String!){
-        forgetPassword(email: $email){
-            message
-        }
+        forgetPassword(email: $email)
     }
 `
 

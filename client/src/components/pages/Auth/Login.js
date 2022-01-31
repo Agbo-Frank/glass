@@ -23,6 +23,7 @@ function Login(){
             if(!data.loginUser){
                 return true
             }
+            console.log(data)
             UserFunc({type: 'LOGIN_USER', data: data.loginUser})
             return navigate('/')
         },
@@ -42,7 +43,7 @@ function Login(){
             }, 5000)
             AlertFunc({
                 type: 'SUCCESS_ALERT', 
-                data: `${data.forgetPassword.message}`
+                data: `${data.forgetPassword}`
             })
         },
         onError: async (err) => {

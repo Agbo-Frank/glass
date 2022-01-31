@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
             default: 1
         }
     }],
+    savedItem: [String],
     date: {
         type: Date,
         default: Date.now()

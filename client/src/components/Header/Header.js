@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import images from "../../glass_img";
 import { useReactiveVar, useQuery } from "@apollo/client";
+import { CartVar } from '../../Apollo/reactiveVariables/Cart'
 import { UserVar, UserFunc } from '../../Apollo/reactiveVariables/User'
 import { ToggleFunc } from '../../Apollo/reactiveVariables/Toggle'
 import { GET_USER } from '../../Apollo/Operations/queries'
@@ -10,6 +11,7 @@ import './header.css'
 function Header(){
     const [active, setActive] = useState('')
     const user = useReactiveVar(UserVar)
+    const cart = useReactiveVar(CartVar)
     const token = localStorage.getItem('Token');
 
     const {data, loading} = useQuery(GET_USER, {
@@ -58,7 +60,7 @@ function Header(){
                     <div className="icons">
                         <i className="fa fa-bars" onClick={() => active === ''? setActive('active'): setActive('')}></i>
                         <i className="fa fa-search" onClick={() => ToggleFunc({type: 'OPEN_SEARCH_PAGE'})}></i>
-                        <Link to={user[0]?.isLoggedIn ?"/cart": "/login"}><i className="fa fa-shopping-cart"></i></Link>
+                        <Link className={`cartIcon ${user[0]?.isLoggedIn && "active"}`} data-num={cart.length} to={user[0]?.isLoggedIn ?"/cart": "/login"}><i className="fa fa-shopping-cart"></i></Link>
                     </div>
                 </div>
             </header>

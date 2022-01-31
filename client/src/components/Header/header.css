@@ -92,6 +92,27 @@ header > div > .icons{
 header > div > .icons > i:first-child{
     display: none
 }
+header > div > .icons .cartIcon.active{
+    /* display: block; */
+    position: relative;
+}
+header > div > .icons .cartIcon.active::before{
+    content: attr(data-num) " ";
+    position: absolute;
+    top: -7px;right: -9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: crimson;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    box-sizing: content-box;
+    padding: 2px;
+    border-radius: 50%;
+    width: 11px;
+    height: 11px
+}
 header > div > .icons  i{
     color: black;
     font-size: 20px;
