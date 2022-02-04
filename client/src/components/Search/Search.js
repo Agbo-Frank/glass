@@ -8,7 +8,7 @@ import { SEARCH } from '../../Apollo/Operations/queries'
 function SearchItem( {product}){
     return(
         <div className="searchItem">
-            <Image cloudName="agbofrank" publicId={product.image} secure="true"></Image>
+            <Image cloudName="agbofrank" publicId={product.image[0]} secure="true"></Image>
             <div>
                 <h5>{product.name}</h5>
                 <p>{product.category}</p>

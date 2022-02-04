@@ -11,11 +11,6 @@ const cache = new InMemoryCache({
                         return UserVar()[0].name;
                     }
                 },
-                image:{
-                    read(){
-                        return UserVar()[0].image;
-                    }
-                },
                 email:{
                     read(){
                         return UserVar()[0].email;
@@ -24,6 +19,9 @@ const cache = new InMemoryCache({
                 cart:{
                     read(){
                         return CartVar();
+                    },
+                    merge(existing, incoming) {
+                        return [...existing, ...incoming];
                     }
                 }
             }

@@ -19,10 +19,10 @@ function VendorPage(){
                 </ul>
             </div>
             <div>
-                <div>
-                    <div className='search'>
-                        <input type='text' />
-                        <i className="fa fa-search"></i>
+                <div className='header'>
+                    <div className='searchv'>
+                        <input type='text' placeholder='Search Here' />
+                        <i className="far fa-search"></i>
                     </div>
                     <div className='icons'>
                         <i className="far fa-bell"></i>

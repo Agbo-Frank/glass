@@ -1,9 +1,8 @@
 import { CartLength, SaveLength } from './Apollo/reactiveVariables/Cart'
 import { AlertFunc } from './Apollo/reactiveVariables/Alert'
-import { UserVar } from './Apollo/reactiveVariables/User';
 import { Link } from 'react-router-dom'
 
-const token = localStorage.getItem('Token');
+const token = localStorage.getItem('Token')
 console.log(token)
 
 const configuration = {
