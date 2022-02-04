@@ -66,11 +66,23 @@ const GET_PRODUCTS = gql`
         }
     }
 `
+const GET_PRODUCT = gql`
+    query GetProduct($id: String!){
+        getProduct(id: $id){
+            name
+            price
+            image
+            _id
+            description
+        }
+    }
+`
 
 export {
     LOGIN_USER,
     GET_USER,
     GET_PRODUCTS,
     SEARCH,
-    GET_CART 
+    GET_CART,
+    GET_PRODUCT
 }

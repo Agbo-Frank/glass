@@ -25,9 +25,12 @@ form .input-field i{
     color: grey;
     margin-right: 8px;
 }
-form .input-field input{
+form .input-field input, form .input-field textarea{
     background-color: transparent;
     width: 100%;
+}
+form .input-field textarea{
+    height: 100px;
 }
 form button{
     background-color: black;
@@ -107,6 +110,6 @@ form .btn{
 }
 @media screen and (max-width: 450px){
     form{
-        width: 100%;
+        width: 95%;
     }
 }

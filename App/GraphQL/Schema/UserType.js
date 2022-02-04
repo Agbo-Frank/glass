@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } = require('graphql')
+const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLBoolean, GraphQLInt } = require('graphql')
 const Product = require('../../model/Product')
 const ProductType = require('./ProductType')
 
@@ -7,6 +7,7 @@ const UserType = new GraphQLObjectType({
     fields: () => ({
         _id: { type: GraphQLString },
         name: { type: GraphQLString },
+        isUser: { type: GraphQLBoolean },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
         cart: { type: new GraphQLList(new GraphQLObjectType({

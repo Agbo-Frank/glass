@@ -15,7 +15,7 @@ import { Alert2 } from './components/Alert/Alert'
 import Search from './components/Search/Search.js'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import "swiper/css/bundle";
+// import "swiper/css/bundle";
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />}/>
         <Route exact path="/products" element={<Products />}/>
-        <Route exact path="/product" element={<Product />}/>
+        <Route exact path="/product/:id" element={<Product />}/>
         <Route exact path="/about" element={<About />}/>
         <Route exact path="/blogs" element={<Blogs />}/>
         <Route exact path="/login" element={<Login />}/>

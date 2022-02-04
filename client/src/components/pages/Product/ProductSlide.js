@@ -1,73 +1,56 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import React, { useRef, useState } from "react";
-import { FreeMode, Navigation, Thumbs } from "swiper";
-import "swiper/css/bundle";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import 'swiper/css';
+import React, { Component } from "react";
+import {Image} from 'cloudinary-react';
+import Slider from "react-slick";
 
-function ProductSlide(){
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  return (
-    <Swiper
-    style={{
-      "--swiper-navigation-color": "#fff",
-      "--swiper-pagination-color": "#fff",
-    }}
-    spaceBetween={10}
-    navigation={true}
-    thumbs={{ swiper: thumbsSwiper }}
-    modules={[FreeMode, Navigation, Thumbs]}
-    className="mySwiper2"
-  >
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-    </SwiperSlide>
-  </Swiper>
-  );
-};
-
-export default ProductSlide
-
-{/* <Slider {...settings} className='product-page-slide'>
-          <div className='slide'>
-            <img src={images.product1} />
-          </div>
-          <div className='slide'>
-            <img src={images.product4} />
-          </div>
-          <div className='slide'>
-            <img src={images.product3} />
-          </div>
-          <div className='slide'>
-            <img src={images.product2} />
-          </div>
-        </Slider> */}
+export default class ProductSlide extends React.Component{
+  render() {
+    const settings1 = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      rows: 1,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      ref: slider => (this.slider = slider)
+    };
+    const settings2 = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      focusOnSelect: true,
+    };
+    // const arrimage = [
+    //   images.product1,
+    //   images.product2,
+    //   images.product3,
+    //   images.product4,
+    //   images.product5,
+    //   images.product6
+    // ]
+    const arrimage = this.props.arrimage
+    return(
+      <div className='product-page-slide'>
+          <Slider {...settings1} className="slide">
+            {
+              arrimage.map(image => (
+                <div key={image}>
+                  <Image cloudName="agbofrank" publicId={image} secure="true" ></Image>
+                </div>
+              ))
+            }
+          </Slider>
+          <Slider {...settings2} className="indicators">
+            {
+              arrimage.map((image, i) => (
+                <div key={image} onClick={() => this.slider.slickGoTo(i, true)}>
+                  <Image cloudName="agbofrank" publicId={image} secure="true" ></Image>
+                </div>
+              ))
+            }
+          </Slider>
+        </div>
+    )
+  }
+}

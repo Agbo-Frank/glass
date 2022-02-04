@@ -35,7 +35,7 @@ function Header(){
                 <div className="">
                     <ul className={`${active}`}>
                         <li onClick={() => setActive('')}><Link to="/">Home</Link></li>
-                        <li onClick={() => setActive('')}><Link to="/product">Products</Link></li>
+                        <li onClick={() => setActive('')}><Link to="/products">Products</Link></li>
                         <li className="dropdown"><a>Pages+</a>
                             <ul className="dropdownMenu">
                                 <li onClick={() => setActive('')}><Link to="/about">About</Link></li>

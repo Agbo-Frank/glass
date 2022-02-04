@@ -33,7 +33,7 @@ function Cart({cart}){
                 }
             })}></i>
             <div>
-            <Image cloudName="agbofrank" publicId={cart?.product?.image} secure="true" ></Image>
+            <Image cloudName="agbofrank" publicId={cart?.product?.image[0]} secure="true" ></Image>
                 <div>
                     <strong>{cart?.product.name}</strong>
                     <div className="quantity-control">

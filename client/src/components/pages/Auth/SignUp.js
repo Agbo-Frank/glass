@@ -13,6 +13,9 @@ function SignUp(){
     const name  = useRef('')
     const email  = useRef('')
     const password  = useRef('')
+    const cPassword  = useRef('')
+    const isUser  = useRef(false)
+
     const navigate = useNavigate()
     
     const [signUp, {loading}] = useMutation(CREATE_USER, {
@@ -29,14 +32,22 @@ function SignUp(){
             return AlertFunc({type: 'ERROR_ALERT', data: message})
         }
     })
-    function submit(e){
+    async function submit(e){
         e.preventDefault()
 
+        if(password.current.value !== cPassword.current.value){
+            await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT'}), 5000)
+            return AlertFunc({type: 'ERROR_ALERT', data: "please confirm your password"})
+        }
+
+        
         signUp({
             variables: {
-                name:name.current.value,
-                email:email.current.value,
-                password:password.current.value
+                name: name.current.value,
+                email: email.current.value,
+                password: password.current.value,
+                cPassword: cPassword.current.value,
+                isUser: !isUser.current.checked
             }
         })
     }
@@ -69,9 +80,13 @@ function SignUp(){
                 </div>
                 <div className="input-field">
                     <i class="fa fa-lock"></i>
-                    <input type="password" placeholder="Confirm Password"/>
+                    <input type="password" ref={cPassword} placeholder="Confirm Password"/>
                 </div>
-                <button type="submit">{loading? 'loading' : 'Sign up'}</button>
+                <label htmlFor="check">
+                    <input type="checkbox" ref={isUser} id="check" />&nbsp;
+                    Become a vendor?
+                </label>
+                <button type="submit">{loading? 'Registering..' : 'Sign up'}</button>
                 <Link to="/login" className="btn">Already Have An Account</Link>
             </form>
         </>

@@ -1,8 +1,18 @@
 import{ gql } from '@apollo/client'
 
 const  CREATE_USER = gql`
-    mutation CreateUser($name: String!, $email: String!, $password: String!){
-        createUser(name: $name, email: $email, password: $password){
+    mutation CreateUser(
+        $name: String!, 
+        $email: String!, 
+        $password: String!,
+        $cPassword: String!,
+        $isUser: Boolean){
+        createUser(
+            name: $name, 
+            email: $email, 
+            password: $password, 
+            cPassword: $cPassword,
+            isUser: $isUser){
             token 
             user{
                 name
@@ -18,9 +28,19 @@ const ADD_TO_CART = gql`
         addToCart(id: $id)
     }
 `
+const SAVE_ITEM = gql`
+    mutation SaveItem($id: String!){
+        saveItem(id: $id)
+    }
+`
 const REMOVE_CART_ITEM = gql`
     mutation RemoveFromCart($id: String!){
         removeFromCart(id: $id)
+    }
+`
+const UNSAVE_ITEM = gql`
+    mutation UnsaveItem($id: String!){
+        unsaveItem(id: $id)
     }
 `
 
@@ -34,5 +54,7 @@ export {
     CREATE_USER,
     REMOVE_CART_ITEM,
     ADD_TO_CART,
-    FORGETPASSWORD
+    FORGETPASSWORD,
+    SAVE_ITEM,
+    UNSAVE_ITEM
 }

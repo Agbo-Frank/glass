@@ -4,7 +4,7 @@ import {Image} from 'cloudinary-react';
 import { useQuery, useMutation } from '@apollo/client'
 import { AlertFunc } from '../../../Apollo/reactiveVariables/Alert'
 import { GET_PRODUCTS } from '../../../Apollo/Operations/queries'
-import { ADD_TO_CART } from '../../../Apollo/Operations/mutations'
+import { ADD_TO_CART, SAVE_ITEM } from '../../../Apollo/Operations/mutations'
 import Title from '../../Title/Title'
 import Loader from '../../Loader/Loader';
 
@@ -31,6 +31,8 @@ function Product({product}){
         }
     }
     const [addToCart] = useMutation(ADD_TO_CART, { ...configuration })
+    const [saveItem] = useMutation(SAVE_ITEM, { ...configuration })
+
     return(
         <div className="product">
             <div>
@@ -39,10 +41,14 @@ function Product({product}){
                         id: product._id
                     }
                 })}></i>
-                <i className="fa fa-eye"></i>
-                <i className="fa fa-heart"></i>
+                <Link to={`/product/${product._id}`}><i className="fa fa-eye"></i></Link>
+                <i className="fa fa-heart" onClick={() => saveItem({
+                    variables:{
+                        id: product._id
+                    }
+                })}></i>
             </div>
-            <Image cloudName="agbofrank" publicId={product.image} secure="true" ></Image>
+            <Image cloudName="agbofrank" publicId={product.image[0]} secure="true" ></Image>
             <div>
                 <strong>{product.name}</strong>
                 <ul className="stars">

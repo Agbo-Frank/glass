@@ -37,6 +37,9 @@
     padding: 10px;
     font-size: 20px;
 }
+.product > div:first-child a{
+    color: black;
+}
 .product > div:first-child i:hover{
     background-color: #f7f7f7;
 }

@@ -1,6 +1,7 @@
-const { GraphQLString, GraphQLNonNull } = require("graphql");
+const { GraphQLString, GraphQLNonNull, GraphQLBoolean } = require("graphql");
 const AuthType = require("../Schema/AuthType");
 const User = require('../../model/User')
+const Vendor = require('../../model/Vendor')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
@@ -12,23 +13,36 @@ module.exports ={
             name: { type: GraphQLString },
             email: { type: new GraphQLNonNull(GraphQLString) },
             password: { type: new GraphQLNonNull(GraphQLString) },
-            cPassword: { type: new GraphQLNonNull(GraphQLString) }
+            cPassword: { type: new GraphQLNonNull(GraphQLString) },
+            isUser: { type: GraphQLBoolean }
         },
         async resolve(parent, args){
-            let { name, email, password, cPassword } = args
+            let { name, email, password, cPassword, isUser } = args
             try{
                 if(password !== cPassword){
                     throw new Error('please confirm password ')
                 }
                 const user = await User.findOne({email})
-                if(user){
+                const vendor = await Vendor.findOne({email})
+                let newUser;
+
+                if(user || vendor){
                     throw new Error('This User already exist')
                 }
-                let newUser = new User({
-                    name,
-                    email,
-                    password
-                })
+                if(isUser){
+                    newUser = new User({
+                        name,
+                        email,
+                        password
+                    })
+                }
+                else{
+                    newUser = new Vendor({
+                        name,
+                        email,
+                        password
+                    })
+                }
                 let salt =  bcrypt.genSaltSync(10);
                 let hash =  bcrypt.hashSync(password, salt);
 
@@ -40,7 +54,8 @@ module.exports ={
                 })
                 return{
                     token,
-                    user: newUser._doc
+                    user: newUser._doc.cart && newUser._doc,
+                    vendor: !newUser._doc.cart && newUser._doc
                 }
             }
             catch(err){

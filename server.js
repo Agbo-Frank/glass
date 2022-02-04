@@ -6,7 +6,7 @@ const schema = require('./App/GraphQL/Schema')
 const upload = require('./App/upload')
 const formData = require("express-form-data");
 const os = require("os");
-const {auth, authenticate} = require('./App/utils/authenticate')
+const {authenticate} = require('./App/utils/authenticate')
 const path = require('path')
 const cors = require('cors')
 require('dotenv').config()
