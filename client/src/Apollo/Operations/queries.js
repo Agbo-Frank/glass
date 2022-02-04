@@ -8,6 +8,10 @@ const LOGIN_USER = gql`
                 name
                 email
             }
+            vendor{
+                name
+                email
+            }
         }
     }
 `

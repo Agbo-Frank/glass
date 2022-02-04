@@ -15,6 +15,7 @@ function Header(){
     const token = localStorage.getItem('Token');
 
     const {data, loading} = useQuery(GET_USER, {
+        fetchPolicy: "network-only",
         context:{
             headers:{
                 authToken:  token

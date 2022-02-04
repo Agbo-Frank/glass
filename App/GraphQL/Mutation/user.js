@@ -52,10 +52,19 @@ module.exports ={
                 let token = jwt.sign({id: newUser.id}, process.env.JWT_SECRET, {
                     expiresIn: 60 * 60 * 2
                 })
-                return{
-                    token,
-                    user: newUser._doc.cart && newUser._doc,
-                    vendor: !newUser._doc.cart && newUser._doc
+                if(isUser){
+                    return{
+                        token,
+                        user: newUser._doc,
+                        vendor: null
+                    }
+                }
+                else{
+                    return{
+                        token,
+                        user: null,
+                        vendor: newUser._doc
+                    }
                 }
             }
             catch(err){

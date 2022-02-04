@@ -3,7 +3,7 @@ import { AlertFunc } from './Apollo/reactiveVariables/Alert'
 import { UserVar } from './Apollo/reactiveVariables/User';
 import { Link } from 'react-router-dom'
 
-const token = UserVar()[0]?.token
+const token = localStorage.getItem('Token');
 console.log(token)
 
 const configuration = {
@@ -13,6 +13,7 @@ const configuration = {
         }
     },
     onCompleted: async (data) => {
+        console.log(token)
         console.log(data)
         if(data.addToCart){
             let id = data.addToCart.split(' ')[0]
@@ -31,6 +32,7 @@ const configuration = {
     },
     onError: async (err) => {
         if(err){
+            console.log(token)
             const message1 = err.networkError
             console.log(message1, err.graphQLErrors)
             await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT2'}), 5000)

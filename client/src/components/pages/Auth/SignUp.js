@@ -19,6 +19,7 @@ function SignUp(){
     const navigate = useNavigate()
     
     const [signUp, {loading}] = useMutation(CREATE_USER, {
+        fetchPolicy: "network-only",
         onCompleted: (data) => {
             if(!data.createUser){
                 return false
