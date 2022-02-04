@@ -18,13 +18,9 @@ const GET_USER = gql`
             email
             cart{
                 itemId
-                quantity
-                product{
-                    name
-                    _id
-                    price
-                    image
-                }
+            }
+            savedItems{
+                _id
             }
         }
     }

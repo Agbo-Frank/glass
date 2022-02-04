@@ -23,7 +23,7 @@ module.exports={
                 }
             })
                 .then(result => {
-                    return result.acknowledged && "successfully added"
+                    return result.acknowledged && `${args.id} successfully added`
                 })
                 .catch(err => {
                     throw err
@@ -71,7 +71,7 @@ module.exports={
                 }
             })
                 .then(result => {
-                    return result.acknowledged && "successfully added"
+                    return result.acknowledged && `${args.id} successfully added`
                 })
                 .catch(err => {
                     throw err

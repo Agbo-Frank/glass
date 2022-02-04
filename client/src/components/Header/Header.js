@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import images from "../../glass_img";
 import { useReactiveVar, useQuery } from "@apollo/client";
-import { CartVar } from '../../Apollo/reactiveVariables/Cart'
+import { CartLength } from '../../Apollo/reactiveVariables/Cart'
 import { UserVar, UserFunc } from '../../Apollo/reactiveVariables/User'
 import { ToggleFunc } from '../../Apollo/reactiveVariables/Toggle'
 import { GET_USER } from '../../Apollo/Operations/queries'
@@ -11,7 +11,7 @@ import './header.css'
 function Header(){
     const [active, setActive] = useState('')
     const user = useReactiveVar(UserVar)
-    const cart = useReactiveVar(CartVar)
+    const cart = useReactiveVar(CartLength)
     const token = localStorage.getItem('Token');
 
     const {data, loading} = useQuery(GET_USER, {

@@ -1,10 +1,12 @@
 import './product.css'
 import { useParams } from "react-router-dom"
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import ProductSlide from './ProductSlide'
 import Title from '../../Title/Title'
+import { ADD_TO_CART, SAVE_ITEM } from '../../../Apollo/Operations/mutations'
 import { GET_PRODUCT } from '../../../Apollo/Operations/queries'
 import Loader from '../../Loader/Loader'
+import { configuration } from '../../../utils'
 
 function Product(){
     const { id } = useParams()
@@ -14,6 +16,9 @@ function Product(){
         }
     })
     let product = data?.getProduct
+    
+    const [addToCart] = useMutation(ADD_TO_CART, { ...configuration })
+    const [saveItem] = useMutation(SAVE_ITEM, { ...configuration })
     if(loading){
         return <Loader />
     }
@@ -46,7 +51,11 @@ function Product(){
                             <div>${product.price}.00</div>
                             <div className='buttons'>
                                 <button>Buy Now</button>
-                                <button>Add To Cart</button>
+                                <button onClick={() => addToCart({
+                                    variables:{
+                                        id: product._id
+                                    }
+                                })}>Add To Cart</button>
                             </div>
                         </div>
                     </div>

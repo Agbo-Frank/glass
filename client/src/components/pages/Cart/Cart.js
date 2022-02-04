@@ -1,11 +1,9 @@
 import './cart.css'
 import Title from "../../Title/Title"
-import { useNavigate } from 'react-router'
-import { AlertFunc } from '../../../Apollo/reactiveVariables/Alert'
 import {Image} from 'cloudinary-react';
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
-import {  GET_USER, GET_CART } from '../../../Apollo/Operations/queries'
-import { CartVar } from '../../../Apollo/reactiveVariables/Cart'
+import { GET_CART } from '../../../Apollo/Operations/queries'
+import { CartVar, CartLength } from '../../../Apollo/reactiveVariables/Cart'
 import Loader from '../../Loader/Loader'
 import { REMOVE_CART_ITEM } from '../../../Apollo/Operations/mutations'
 
@@ -19,7 +17,12 @@ function Cart({cart}){
             }
         },
         onCompleted: (data) => {
-            let id = data.removeFromCart.message.split(' ')[0]
+            let id = data.removeFromCart.split(' ')[0]
+            if(CartLength().includes(id)){
+                CartLength(
+                    CartLength().filter(cart => cart !== id)
+                )
+            }
             return CartVar(
                 CartVar().filter(cart => cart.itemId !== id)
             )
@@ -49,7 +52,6 @@ function Cart({cart}){
 
 function Carts(){
     const carts = useReactiveVar(CartVar)
-    const navigate = useNavigate()
     
     const {loading, error } = useQuery(GET_CART, {
         fetchPolicy: "network-only",
@@ -59,7 +61,6 @@ function Carts(){
             }
         },
         onCompleted: (data) => {
-            console.log(data)
             return CartVar([...data.getUser.cart])
         } 
     })

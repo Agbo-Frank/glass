@@ -13,6 +13,7 @@ import Carts from './components/pages/Cart/Cart.js'
 import Upload from './components/pages/Upload/upload'
 import { Alert2 } from './components/Alert/Alert'
 import Search from './components/Search/Search.js'
+import VendorPage from './components/pages/Vendor'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 // import "swiper/css/bundle";
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/sign-up" element={<SignUp />}/>
         <Route exact path="/cart" element={<Carts />}/>
         <Route exact path="/upload" element={<Upload />}/>
+        <Route exact path="/vendor/*" element={<VendorPage />}/>
       </Routes> 
       <Footer />
       <Alert2 />

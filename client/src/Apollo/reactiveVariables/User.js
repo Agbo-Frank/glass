@@ -1,5 +1,6 @@
 import { makeVar } from '@apollo/client'
 import { AlertFunc } from './Alert'
+import { CartLength, SaveLength } from './Cart'
 
 const UserVar = makeVar([])
 
@@ -16,6 +17,10 @@ function UserFunc(action){
             }])
         }
         case 'LOAD_USER':{
+            let cartIds = action.data?.cart.map(cart => cart.itemId)
+            let savedIds = action.data?.savedItems.map(savedItem => savedItem._id)
+            CartLength(cartIds)
+            SaveLength(savedIds)
             return UserVar([{
                 ...UserVar()[0],
                 name:action.data?.name,

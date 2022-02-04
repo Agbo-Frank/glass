@@ -2,34 +2,13 @@ import './products.css'
 import { Link } from 'react-router-dom'
 import {Image} from 'cloudinary-react';
 import { useQuery, useMutation } from '@apollo/client'
-import { AlertFunc } from '../../../Apollo/reactiveVariables/Alert'
 import { GET_PRODUCTS } from '../../../Apollo/Operations/queries'
 import { ADD_TO_CART, SAVE_ITEM } from '../../../Apollo/Operations/mutations'
 import Title from '../../Title/Title'
 import Loader from '../../Loader/Loader';
+import { configuration } from '../../../utils'
 
 function Product({product}){
-    const token = localStorage.getItem('Token')
-    const configuration = {
-        context:{
-            headers:{
-                authToken: token 
-            }
-        },
-        onCompleted: async (data) => {
-            console.log(data)
-            await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT2'}), 3000)
-            return AlertFunc({type: 'SUCCESS_ALERT2', data: 'Product Successfully Added'})
-        },
-        onError: async (err) => {
-            if(err){
-                const message1 = err.networkError
-                console.log(message1, err.graphQLErrors)
-                await setTimeout(() => AlertFunc({type: 'CLOSE_ALERT2'}), 5000)
-                return AlertFunc({type: 'ERROR_ALERT2', data: <>Unsuccessfully Added, Please <Link to="/login" className="alert-link">Login!</Link></>})
-            }
-        }
-    }
     const [addToCart] = useMutation(ADD_TO_CART, { ...configuration })
     const [saveItem] = useMutation(SAVE_ITEM, { ...configuration })
 
