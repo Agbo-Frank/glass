@@ -3,13 +3,14 @@ import Title from "../../Title/Title"
 import {Image} from 'cloudinary-react';
 import { useQuery, useReactiveVar, useMutation } from '@apollo/client'
 import { GET_CART } from '../../../Apollo/Operations/queries'
+import { UserVar } from '../../../Apollo/reactiveVariables/User'
 import { CartVar, CartLength } from '../../../Apollo/reactiveVariables/Cart'
 import Loader from '../../Loader/Loader'
 import { REMOVE_CART_ITEM } from '../../../Apollo/Operations/mutations'
 
-const token = localStorage.getItem('Token')
-
 function Cart({cart}){
+    const user = useReactiveVar(UserVar)
+    const token = user[0]?.token
     const [removeItem] = useMutation(REMOVE_CART_ITEM, {
         context: {
             headers: {
@@ -52,6 +53,8 @@ function Cart({cart}){
 
 function Carts(){
     const carts = useReactiveVar(CartVar)
+    const user = useReactiveVar(UserVar)
+    const token = user[0]?.token
     
     const {loading, error } = useQuery(GET_CART, {
         fetchPolicy: "network-only",
