@@ -1,0 +1,115 @@
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height: 85%;
+}
+.dashboard > div:first-child{
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    height: 40%;
+}
+.dashboard > div:first-child > div{
+    width: 50%;
+}
+.dashboard > div:first-child > .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto, 50%);
+    grid-gap: 13px;
+    height: 100%;
+}
+.dashboard > div:first-child > .grid > div{
+    position: relative;
+    background-color: white;
+    box-shadow: var(--shadow);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    /* padding: 1.5rem; */
+    align-items: center;
+    overflow: hidden;
+}
+.dashboard > div:first-child > .grid > div::after{
+    content: " ";
+    position: absolute;
+    top: 0;left: 0;
+    right: 0;
+    background-color: black;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    clip-path: circle(0 at 0 100%);
+    transition: all 0.2s linear;
+}
+.dashboard > div:first-child > .grid > div:hover::after{
+    clip-path: circle(300px at 0 100%);
+}
+.dashboard > div:first-child > .grid > div > i{
+    font-weight: bold;
+    font-size: 20px;
+}
+.dashboard > div:first-child > .grid > div:hover > i,
+.dashboard > div:first-child > .grid > div:hover > div{
+    z-index: 10;
+    color: white;
+}
+.dashboard > div:first-child > .grid > div > div{
+    display: flex;
+    height: 100%;
+    height: fit-content;
+    flex-direction: column;
+    gap: 0;
+    line-height: 1;
+    text-align: center;
+}
+.dashboard > div:first-child > .grid > div > div p{
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;padding: 0;
+}
+.dashboard > div:first-child > .grid > div > div small{
+    color: grey;
+    font-weight: 500;
+}
+.dashboard > div:first-child .chart{
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+.dashboard > div:last-child{
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    height: 59%;
+}
+.dashboard > div:last-child > div{
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    width: 60%;
+    background-color: white;
+    padding: 1.5rem;
+}
+.dashboard > div:last-child > div:first-child{
+    width: 40%;
+    box-shadow: var(--shadow);
+}
+.dashboard > div:last-child > div table{
+    width: 100%;
+    margin-top: 15px;
+}
+.dashboard > div:last-child > div table thead tr, tbody tr:hover{
+    background-color: #f0f0f0;
+    border-radius: 9px;
+}
+tr th, tr td{
+    padding: 9px 8px;
+    text-transform: capitalize;
+}
+/* .app, .dec, .pen{
+    background-color: ;
+} */

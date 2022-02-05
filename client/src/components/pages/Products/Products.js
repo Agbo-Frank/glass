@@ -1,16 +1,32 @@
 import './products.css'
 import { Link } from 'react-router-dom'
 import {Image} from 'cloudinary-react';
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useMutation, useReactiveVar } from '@apollo/client'
 import { GET_PRODUCTS } from '../../../Apollo/Operations/queries'
 import { ADD_TO_CART, SAVE_ITEM } from '../../../Apollo/Operations/mutations'
 import Title from '../../Title/Title'
 import Loader from '../../Loader/Loader';
 import { configuration } from '../../../utils'
+import { UserVar } from '../../../Apollo/reactiveVariables/User'
 
 function Product({product}){
-    const [addToCart] = useMutation(ADD_TO_CART, { ...configuration })
-    const [saveItem] = useMutation(SAVE_ITEM, { ...configuration })
+    const user = useReactiveVar(UserVar)
+    const token = user[0]?.token
+    console.log(token)
+    const [addToCart] = useMutation(ADD_TO_CART, { ...configuration,
+        context:{
+            headers:{
+                authToken: token 
+            }
+        }
+    })
+    const [saveItem] = useMutation(SAVE_ITEM, { ...configuration, 
+        context:{
+            headers:{
+                authToken: token 
+            }
+        }
+    })
 
     return(
         <div className="product">

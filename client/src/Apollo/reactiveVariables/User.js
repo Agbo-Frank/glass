@@ -39,6 +39,7 @@ function UserFunc(action){
                 ...UserVar()[0],
                 name:'',
                 email: '',
+                token: null,
                 isLoggedIn: false
             }])
         }

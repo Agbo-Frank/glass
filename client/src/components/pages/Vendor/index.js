@@ -21,7 +21,7 @@ function VendorPage(){
             <div>
                 <div className='header'>
                     <div className='searchv'>
-                        <input type='text' placeholder='Search Here' />
+                        <input type='text' placeholder='Search Here...' />
                         <i className="far fa-search"></i>
                     </div>
                     <div className='icons'>

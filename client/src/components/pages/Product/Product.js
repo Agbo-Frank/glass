@@ -1,12 +1,13 @@
 import './product.css'
 import { useParams } from "react-router-dom"
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useMutation, useReactiveVar } from '@apollo/client'
 import ProductSlide from './ProductSlide'
 import Title from '../../Title/Title'
 import { ADD_TO_CART, SAVE_ITEM } from '../../../Apollo/Operations/mutations'
 import { GET_PRODUCT } from '../../../Apollo/Operations/queries'
 import Loader from '../../Loader/Loader'
 import { configuration } from '../../../utils'
+import { UserVar } from '../../../Apollo/reactiveVariables/User'
 
 function Product(){
     const { id } = useParams()
@@ -16,9 +17,24 @@ function Product(){
         }
     })
     let product = data?.getProduct
+    const user = useReactiveVar(UserVar)
+    const token = user[0]?.token
+    console.log(token)
     
-    const [addToCart] = useMutation(ADD_TO_CART, { ...configuration })
-    const [saveItem] = useMutation(SAVE_ITEM, { ...configuration })
+    const [addToCart] = useMutation(ADD_TO_CART, { ...configuration,
+        context:{
+            headers:{
+                authToken: token 
+            }
+        }
+    })
+    const [saveItem] = useMutation(SAVE_ITEM, { ...configuration,
+        context:{
+            headers:{
+                authToken: token 
+            }
+        }
+    })
     if(loading){
         return <Loader />
     }
