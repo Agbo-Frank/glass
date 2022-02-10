@@ -14,7 +14,7 @@ function AlertFunc(action){
                 display1: false
             }])
         }
-        break;
+        
         case 'ERROR_ALERT2': {
             return AuthAlertVar([{
                 ...AuthAlertVar()[0],
@@ -24,7 +24,7 @@ function AlertFunc(action){
                 display1: true
             }])
         }
-        break;
+        
         case 'SUCCESS_ALERT2': {
             return AuthAlertVar([{
                 ...AuthAlertVar()[0],
@@ -34,7 +34,7 @@ function AlertFunc(action){
                 display1: true
             }])
         }
-        break;
+        
         case 'CLOSE_ALERT':{
             return AlertVar([{
                 ...AlertVar()[0],
@@ -44,7 +44,7 @@ function AlertFunc(action){
                 display: false
             }])
         }
-        break;
+        
         case 'ERROR_ALERT': {
             return AlertVar([{
                 ...AlertVar()[0],
@@ -54,7 +54,6 @@ function AlertFunc(action){
                 display: true
             }])
         }
-        break;
         case 'SUCCESS_ALERT': {
             return AlertVar([{
                 ...AlertVar()[0],
@@ -64,7 +63,6 @@ function AlertFunc(action){
                 display: true
             }])
         }
-        break;
         case 'INFO_AUTH_ALERT': {
             return AuthAlertVar([{
                 ...AuthAlertVar()[0],
@@ -74,7 +72,9 @@ function AlertFunc(action){
                 show: "active",
             }])
         }
-        break;
+        default: {
+            return AuthAlertVar()
+        }
     }
 }
 

@@ -12,7 +12,7 @@ import { UserVar } from '../../../Apollo/reactiveVariables/User'
 function Product({product}){
     const user = useReactiveVar(UserVar)
     const token = user[0]?.token
-    console.log(token)
+
     const [addToCart] = useMutation(ADD_TO_CART, { ...configuration,
         context:{
             headers:{
@@ -61,7 +61,6 @@ function Product({product}){
 
 function Products(){
     const {data, loading} = useQuery(GET_PRODUCTS)
-    console.log(data)
     const products = data?.getProducts
 
     if(loading){

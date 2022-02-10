@@ -25,7 +25,11 @@ function SignUp(){
                 return false
             }
             UserFunc({type: 'LOGIN_USER', data: data.createUser})
-            navigate('/')
+            if(data.createUser.vendor){
+                console.log('hi')
+                return navigate('/vendor')
+            }
+            return navigate('/')
         },
         onError: async (err) => {
             const message = err.graphQLErrors[0]?.message
@@ -48,7 +52,7 @@ function SignUp(){
                 email: email.current.value,
                 password: password.current.value,
                 cPassword: cPassword.current.value,
-                isUser: !isUser.current.checked
+                // isUser: !isUser.current.checked
             }
         })
     }
@@ -83,10 +87,10 @@ function SignUp(){
                     <i class="fa fa-lock"></i>
                     <input type="password" ref={cPassword} placeholder="Confirm Password"/>
                 </div>
-                <label htmlFor="check">
+                {/* <label htmlFor="check">
                     <input type="checkbox" ref={isUser} id="check" />&nbsp;
                     Become a vendor?
-                </label>
+                </label> */}
                 <button type="submit">{loading? 'Registering..' : 'Sign up'}</button>
                 <Link to="/login" className="btn">Already Have An Account</Link>
             </form>

@@ -110,6 +110,14 @@ tr th, tr td{
     padding: 9px 8px;
     text-transform: capitalize;
 }
+.chart{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* .app, .dec, .pen{
     background-color: ;
 } */

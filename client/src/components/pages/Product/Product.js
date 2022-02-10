@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom"
 import { useQuery, useMutation, useReactiveVar } from '@apollo/client'
 import ProductSlide from './ProductSlide'
 import Title from '../../Title/Title'
-import { ADD_TO_CART, SAVE_ITEM } from '../../../Apollo/Operations/mutations'
+import { ADD_TO_CART, SAVE_ITEM, CREATE_ORDER } from '../../../Apollo/Operations/mutations'
 import { GET_PRODUCT } from '../../../Apollo/Operations/queries'
 import Loader from '../../Loader/Loader'
 import { configuration } from '../../../utils'
 import { UserVar } from '../../../Apollo/reactiveVariables/User'
+import { OrderVar } from '../../../Apollo/reactiveVariables/Cart'
+import { usePaystackPayment } from "react-paystack"
 
 function Product(){
     const { id } = useParams()
@@ -19,7 +21,6 @@ function Product(){
     let product = data?.getProduct
     const user = useReactiveVar(UserVar)
     const token = user[0]?.token
-    console.log(token)
     
     const [addToCart] = useMutation(ADD_TO_CART, { ...configuration,
         context:{
@@ -35,6 +36,39 @@ function Product(){
             }
         }
     })
+    const [createOrder] = useMutation(CREATE_ORDER, {
+        context:{
+            headers:{
+                authToken:  token
+            }
+        },
+        onCompleted: (data) => {
+            if(data.createOrder){
+                OrderVar([...OrderVar(), data.createOrder])
+                console.log(OrderVar())
+            }
+        }
+    })
+    const config = {
+        publicKey: 'pk_test_149011f21e082e0d7211b37f9d8305cee896f759',
+        reference: (new Date()).getTime().toString(),
+        email: user[0]?.email,
+        amount: product.price * 100,
+      };
+    const initializePayment = usePaystackPayment(config);
+    function checkOut(res){
+        console.log(res)
+        if(res.message === "Approved" && res.status === 'success'){
+            createOrder({
+                variables: {
+                    vendorId: product.vendorId,
+                    productId: product._id,
+                    price: product.price,
+                    reference: res.reference
+                }
+            })
+        }
+    }
     if(loading){
         return <Loader />
     }
@@ -66,7 +100,9 @@ function Product(){
                         <div>
                             <div>${product.price}.00</div>
                             <div className='buttons'>
-                                <button>Buy Now</button>
+                                <button onClick={() => {
+                                 initializePayment((res) => checkOut(res), (err) => console.log(err));
+                                }}>Buy Now</button>
                                 <button onClick={() => addToCart({
                                     variables:{
                                         id: product._id

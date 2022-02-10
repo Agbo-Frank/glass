@@ -10,8 +10,8 @@ function UserFunc(action){
             localStorage.setItem('Token', action?.data.token)
             return UserVar([{
                 ...UserVar()[0],
-                name:action.data?.user.name,
-                email: action.data?.user.email,
+                name:action.data?.user?.name || action.data?.vendor?.name,
+                email: action.data?.user?.email || action.data?.vendor?.email,
                 token: localStorage.getItem('Token'),
                 isLoggedIn: true
             }])
@@ -23,8 +23,8 @@ function UserFunc(action){
             SaveLength(savedIds)
             return UserVar([{
                 ...UserVar()[0],
-                name:action.data?.name,
-                email: action.data?.email,
+                name:action.data?.name || action.data?.vendor?.name,
+                email: action.data?.email || action.data?.vendor?.email,
                 token: localStorage.getItem('Token'),
                 isLoggedIn: true
             }])

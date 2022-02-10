@@ -6,11 +6,13 @@ import About from './components/pages/About/About'
 import Products from './components/pages/Products/Products'
 import Product from './components/pages/Product/Product'
 import './index.css'
+import { useReactiveVar } from '@apollo/client'
+import { UserVar } from './Apollo/reactiveVariables/User'
 import Blogs from './components/pages/Blogs/Blog.js'
 import Login from './components/pages/Auth/Login.js'
 import SignUp from './components/pages/Auth/SignUp.js'
 import Carts from './components/pages/Cart/Cart.js'
-import Upload from './components/pages/Upload/upload'
+// import Upload from './components/pages/Vendor/Upload/upload'
 import { Alert2 } from './components/Alert/Alert'
 import Search from './components/Search/Search.js'
 import VendorPage from './components/pages/Vendor'
@@ -20,6 +22,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 function App() {
+  const user = useReactiveVar(UserVar)
+  
   return (
     <div className="App">
       <Header/>
@@ -32,8 +36,8 @@ function App() {
         <Route exact path="/blogs" element={<Blogs />}/>
         <Route exact path="/login" element={<Login />}/>
         <Route exact path="/sign-up" element={<SignUp />}/>
-        <Route exact path="/cart" element={<Carts />}/>
-        <Route exact path="/upload" element={<Upload />}/>
+        {user[0]?.isLoggedIn && <Route exact path="/cart" element={<Carts />}/>}
+        {/* <Route exact path="/upload" element={<Upload />}/> */}
         <Route exact path="/vendor/*" element={<VendorPage />}/>
       </Routes> 
       <Footer />

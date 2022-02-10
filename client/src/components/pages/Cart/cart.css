@@ -6,8 +6,9 @@
 }
 .cart{
     width: 100%;
-    max-width: 20rem;
     position: relative;
+    /* max-width: 20rem; */
+    height: fit-content;
     border: 1px solid black;
     border-radius: 5px;
     padding: 9px;
@@ -42,6 +43,31 @@
 }
 .cart > div img{
     width: 30%;
+}
+.order-summary{
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 9px;
+}
+.order-summary strong{
+    font-size: 20px;
+    line-height: 2;
+}
+.order-summary div{
+    display: flex;
+    line-height: 1;
+    width: 100%;
+    justify-content: space-between;
+}
+.order-summary button{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: black;
+    color: white;
 }
 
 @media screen and (max-width: 760px) {

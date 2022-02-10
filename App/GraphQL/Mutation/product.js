@@ -55,6 +55,24 @@ module.exports={
                 })
         }
     },
+    clearCart:{
+        type: GraphQLString,
+        resolve(_, __, req){
+            if(!req.isAuth){
+                throw new Error('Unauthorized')
+            }
+            const userId = req.user
+            return User.updateOne({ _id: userId}, {
+                $set: {cart: []}
+            })
+                .then(result => {
+                    return result.acknowledged && `successfully added`
+                })
+                .catch(err => {
+                    throw err
+                })
+        }
+    },
     saveItem: {
         type: GraphQLString,
         args: {

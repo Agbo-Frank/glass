@@ -17,7 +17,10 @@ const  CREATE_USER = gql`
             user{
                 name
                 email
-                _id
+            }
+            vendor{
+                name
+                email
             }
         }
     }
@@ -49,6 +52,34 @@ const FORGETPASSWORD = gql`
         forgetPassword(email: $email)
     }
 `
+const CREATE_ORDER = gql`
+    mutation CreateOrder(
+        $vendorId: String!, 
+        $productId: String!, 
+        $price: Int!,
+        $reference: String){
+        createOrder(
+            vendorId: $vendorId, 
+            productId: $productId, 
+            price: $price,
+            reference: $reference){
+            price
+            user{
+                name
+                email
+            }
+            product{
+                image
+                name
+            }
+        }
+    }
+`
+const CLEARCART = gql`
+    mutation ClearCart{
+        clearCart
+    }
+`
 
 export {
     CREATE_USER,
@@ -56,5 +87,7 @@ export {
     ADD_TO_CART,
     FORGETPASSWORD,
     SAVE_ITEM,
-    UNSAVE_ITEM
+    UNSAVE_ITEM,
+    CREATE_ORDER,
+    CLEARCART
 }

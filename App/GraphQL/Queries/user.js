@@ -11,12 +11,16 @@ const Vendor = require("../../model/Vendor");
 module.exports = {
     getUser:{
         type: UserType,
-        resolve(parent, args, req){
+        async resolve(parent, args, req){
             if(!req.isAuth){
                 throw new Error('Unauthorized')
             }
             const userId = req.user
-            return User.findOne({ _id: userId})
+            let user = await User.findOne({ _id: userId})
+            if(!user._doc){
+                user = await Vendor.findOne({ _id: userId})
+            }
+            return user._doc
         }
     },
     getVendor:{
@@ -54,8 +58,8 @@ module.exports = {
                         })
                         return{
                             token,
-                            user: user._doc.cart && user._doc,
-                            vendor: !user._doc.cart && user._doc
+                            user: user._doc.cart ? user._doc : null,
+                            vendor: !user._doc.cart ? user._doc : null
                         }
                     } catch (error) {
                         throw error

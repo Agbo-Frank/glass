@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import {useMutation} from '@apollo/client'
-import { Alert } from '../../Alert/Alert'
-import { AlertFunc } from '../../../Apollo/reactiveVariables/Alert'
-import Title from '../../Title/Title'
+import { Alert } from '../../../Alert/Alert'
+import { AlertFunc } from '../../../../Apollo/reactiveVariables/Alert'
+import Title from '../../../Title/Title'
 
 function Upload(){
     const name = useRef('')
@@ -61,7 +61,7 @@ function Upload(){
     }
     return(
         <>
-            <Title title="post your glass" location="upload" />
+            {/* <Title title="post your glass" location="upload" /> */}
             <form onSubmit={(e) => submit(e)}>
                 <h3>Upload your Glass</h3>
                 <Alert />

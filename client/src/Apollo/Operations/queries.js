@@ -40,6 +40,7 @@ const GET_CART = gql`
                     _id
                     price
                     image
+                    vendorId
                 }
             }
         }

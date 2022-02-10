@@ -10,14 +10,16 @@ function ToggleFunc(action){
                 search: true
             }])
         }
-        break;
+        
         case 'CLOSE_SEARCH_PAGE':{
             return ToggleVar([{
                 ...ToggleVar()[0], 
                 search: false
             }])
         }
-        break;
+        default:{
+            return ToggleVar()
+        }
     }
 }
 

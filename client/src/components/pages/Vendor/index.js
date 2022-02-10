@@ -1,6 +1,7 @@
 import { NavLink, Route, Routes } from 'react-router-dom'
 import images from '../../../glass_img'
 import Dashboard from './Dashboard/Dashboard'
+import Upload from './Upload/upload'
 import './index.css'
 
 function VendorPage(){
@@ -31,6 +32,7 @@ function VendorPage(){
                 </div>
                 <Routes>
                     <Route path=''element={<Dashboard />}/>
+                    <Route path='upload'element={<Upload />}/>
                 </Routes>
             </div>
         </div>

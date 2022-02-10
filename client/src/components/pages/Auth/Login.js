@@ -25,7 +25,11 @@ function Login(){
             }
             console.log(data)
             UserFunc({type: 'LOGIN_USER', data: data.loginUser})
+            if(data.loginUser.vendor){
+                return navigate('/vendor')
+            }
             return navigate('/')
+            
         },
         onError: async (err) => {
             const message = err.graphQLErrors[0]?.message

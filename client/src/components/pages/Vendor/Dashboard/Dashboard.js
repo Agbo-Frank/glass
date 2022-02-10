@@ -1,4 +1,5 @@
 import './dashboard.css'
+import Chart from './Chart'
 
 function Dashboard(){
     return(
@@ -36,7 +37,9 @@ function Dashboard(){
                             </div>
                         </div>
                     </div>
-                    <div className="chart"></div>
+                    <div className="chart">
+                        <Chart />
+                    </div>
                 </div>
                 <div>
                     <div>
